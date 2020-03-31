@@ -7,9 +7,12 @@ class Game:
         self.gameDeck = Deck()
         self.drinkCount = 0
 
+        # Set up the discard
+        self.discard = []
+
         # Stack the piles
         self.pile = []
-        for i in range(int(numberCards * (numberCards + 1) / 2)):
+        for i in range(numberCards):
             self.pile.append(self.gameDeck.deal())
 
     def play(self, numberCards):
@@ -31,12 +34,17 @@ class Game:
 
         # Continue until the deck is gone
         while self.pile:
+            print(self.pile)
+            print(self.gameDeck.cards)
             # Increase the number of drinks
             self.currentDrinks += 1
 
-            if self.pile.pop() >= threshold:
+            currentCard = self.pile.pop()
+            self.discard.append(currentCard)
+
+            if currentCard >= threshold:
                 # Add drinks equal to the number of stacks turned
-                self.drinkCount += (self.currentDrinks)
+                self.drinkCount += self.currentDrinks
                 # Refill the stacks
                 self.refill(self.currentDrinks)
 
