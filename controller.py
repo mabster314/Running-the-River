@@ -3,7 +3,7 @@ import numpy as np
 from game import Game
 
 # Number of trials to run
-trials = 100
+trials = 1000000
 
 results_5 = np.empty(trials)
 results_6 = np.empty(trials)
