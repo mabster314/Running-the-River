@@ -1,9 +1,12 @@
 import numpy as np
+import sys
 
 from game import Game
 
+
+
 # Number of trials to run
-trials = 1000000
+trials = int(sys.argv[1])
 
 results_5 = np.empty(trials)
 results_6 = np.empty(trials)
@@ -25,6 +28,8 @@ def calcStats(result):
 
 # Return the results
 np.savetxt("results/results.csv", results_out, fmt='%d', delimiter=',')
+
+print("Ran " + str(trials) + " trials")
 
 stats_5 = calcStats(results_5)
 print("The five-card test resulted in a mean of " + str(stats_5[0]) + " and a std. dev. of " + str(stats_5[1]))
